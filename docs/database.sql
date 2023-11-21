@@ -13,13 +13,13 @@ CREATE SEQUENCE saison_id_seq AS integer START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE type_action_id_seq AS integer START WITH 1 INCREMENT BY 1;
 
 CREATE  TABLE equipe ( 
-	id                   serial DEFAULT nextval('equipe_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('equipe_id_seq'::regclass) NOT NULL  ,
 	nom                  varchar(255)    ,
 	CONSTRAINT equipe_pkey PRIMARY KEY ( id )
  );
 
 CREATE  TABLE joueur ( 
-	id                   serial DEFAULT nextval('joueur_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('joueur_id_seq'::regclass) NOT NULL  ,
 	id_equipe            integer    ,
 	nom                  varchar(255)    ,
 	numero               integer    ,
@@ -28,21 +28,21 @@ CREATE  TABLE joueur (
  );
 
 CREATE  TABLE saison ( 
-	id                   serial DEFAULT nextval('saison_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('saison_id_seq'::regclass) NOT NULL  ,
 	annee_debut          integer    ,
 	annee_fin            integer    ,
 	CONSTRAINT saison_pkey PRIMARY KEY ( id )
  );
 
 CREATE  TABLE type_action ( 
-	id                   serial DEFAULT nextval('type_action_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('type_action_id_seq'::regclass) NOT NULL  ,
 	nom                  varchar(255)    ,
 	reference            varchar(255)    ,
 	CONSTRAINT type_action_pkey PRIMARY KEY ( id )
  );
 
 CREATE  TABLE "match" ( 
-	id                   serial DEFAULT nextval('match_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('match_id_seq'::regclass) NOT NULL  ,
 	"date"               date    ,
 	id_equipea           integer    ,
 	id_equipeb           integer    ,
@@ -55,7 +55,7 @@ CREATE  TABLE "match" (
  );
 
 CREATE  TABLE "action" ( 
-	id                   serial DEFAULT nextval('action_id_seq'::regclass) NOT NULL  ,
+	id                   integer DEFAULT nextval('action_id_seq'::regclass) NOT NULL  ,
 	id_joueur            integer    ,
 	id_match             integer    ,
 	id_type_action       integer    ,
@@ -65,6 +65,37 @@ CREATE  TABLE "action" (
 	CONSTRAINT fk_action_match FOREIGN KEY ( id_match ) REFERENCES "match"( id ) ON DELETE CASCADE ON UPDATE CASCADE ,
 	CONSTRAINT fk_action_type_action FOREIGN KEY ( id_type_action ) REFERENCES type_action( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
+
+CREATE OR REPLACE VIEW equipe_mj AS SELECT teams.id_equipe,     count(DISTINCT m.id) AS match_count    FROM (( SELECT match.id_equipea AS id_equipe            FROM match         UNION ALL          SELECT match.id_equipeb AS id_equipe            FROM match) teams      LEFT JOIN match m ON (((teams.id_equipe = m.id_equipea) OR (teams.id_equipe = m.id_equipeb))))   GROUP BY teams.id_equipe   ORDER BY teams.id_equipe;
+ SELECT teams.id_equipe,
+    count(DISTINCT m.id) AS match_count
+   FROM (( SELECT match.id_equipea AS id_equipe
+           FROM match
+        UNION ALL
+         SELECT match.id_equipeb AS id_equipe
+           FROM match) teams
+     LEFT JOIN match m ON (((teams.id_equipe = m.id_equipea) OR (teams.id_equipe = m.id_equipeb))))
+  GROUP BY teams.id_equipe
+  ORDER BY teams.id_equipe;
+
+CREATE OR REPLACE VIEW joueur_mj AS SELECT j.id AS id_joueur,     count(DISTINCT a.id_match) AS match_count    FROM (joueur j      LEFT JOIN action a ON ((j.id = a.id_joueur)))   GROUP BY j.id;
+ SELECT j.id AS id_joueur,
+    count(DISTINCT a.id_match) AS match_count
+   FROM (joueur j
+     LEFT JOIN action a ON ((j.id = a.id_joueur)))
+  GROUP BY j.id;
+
+CREATE OR REPLACE VIEW stat_joueur_static AS SELECT jmj.id_joueur,     j.nom AS nom_joueur,     emj.id_equipe,     e.nom AS nom_equipe,     emj.match_count AS nombre_match_equipe,     jmj.match_count AS nombre_match_joueur    FROM (((joueur_mj jmj      JOIN joueur j ON ((j.id = jmj.id_joueur)))      JOIN equipe e ON ((e.id = j.id_equipe)))      JOIN equipe_mj emj ON ((emj.id_equipe = e.id)));
+ SELECT jmj.id_joueur,
+    j.nom AS nom_joueur,
+    emj.id_equipe,
+    e.nom AS nom_equipe,
+    emj.match_count AS nombre_match_equipe,
+    jmj.match_count AS nombre_match_joueur
+   FROM (((joueur_mj jmj
+     JOIN joueur j ON ((j.id = jmj.id_joueur)))
+     JOIN equipe e ON ((e.id = j.id_equipe)))
+     JOIN equipe_mj emj ON ((emj.id_equipe = e.id)));
 
 INSERT INTO equipe( id, nom ) VALUES ( 1, 'Los Angeles Lakers');
 INSERT INTO equipe( id, nom ) VALUES ( 2, 'Golden State Warriors');
