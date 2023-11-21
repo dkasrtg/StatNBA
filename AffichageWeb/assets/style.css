@@ -1,0 +1,34 @@
+.head-background {
+    background-color: #0f6db4;
+}
+
+.head-row-background {
+    background-color: #032f4f;
+    border: none;
+    color: white;
+}
+
+.stat-table {
+    text-align: center;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 100%;
+    box-shadow: 1px 2px 3px lightgray;
+}
+
+.table td div {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
