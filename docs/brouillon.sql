@@ -14,28 +14,29 @@ ALTER SEQUENCE action_id_seq RESTART WITH 1;
 
 
 
-INSERT INTO equipe (nom) VALUES
-  ('Los Angeles Lakers'),
-  ('Golden State Warriors'),
-  ('Brooklyn Nets');
+INSERT INTO equipe (nom,"image") VALUES
+  ('Los Angeles Lakers','equipe1'),
+  ('Golden State Warriors','equipe2'),
+  ('Brooklyn Nets','equipe3');
 
 -- Players for Los Angeles Lakers (id_equipe = 1)
-INSERT INTO joueur (id_equipe, nom, numero) VALUES
-  (1, 'LeBron James', 23),
-  (1, 'Anthony Davis', 3),
-  (1, 'Russell Westbrook', 0);
+INSERT INTO joueur (id_equipe, nom, numero,"image") VALUES
+  (1, 'LeBron James', 23,'joueur1'),
+  (1, 'Anthony Davis', 3,'joueur2'),
+  (1, 'Russell Westbrook', 0,'joueur3');
 
 -- Players for Golden State Warriors (id_equipe = 2)
-INSERT INTO joueur (id_equipe, nom, numero) VALUES
-  (2, 'Stephen Curry', 30),
-  (2, 'Klay Thompson', 11),
-  (2, 'Draymond Green', 23);
+INSERT INTO joueur (id_equipe, nom, numero,"image") VALUES
+  (2, 'Stephen Curry', 30,'joueur4'),
+  (2, 'Klay Thompson', 11,'joueur5'),
+  (2, 'Draymond Green', 23,'joueur6');
 
 -- Players for Brooklyn Nets (id_equipe = 3)
-INSERT INTO joueur (id_equipe, nom, numero) VALUES
-  (3, 'Kevin Durant', 7),
-  (3, 'Kyrie Irving', 11),
-  (3, 'James Harden', 13);
+INSERT INTO joueur (id_equipe, nom, numero,"image") VALUES
+  (3, 'Kevin Durant', 7,'joueur7'),
+  (3, 'Kyrie Irving', 11,'joueur8'),
+  (3, 'James Harden', 13,'joueur9');
+  
 
 INSERT INTO saison (annee_debut, annee_fin) VALUES (2022, 2023);
 
@@ -280,5 +281,5 @@ GROUP BY j.id;
 
 
 create view stat_joueur_static as 
-select jmj.id_joueur,j.nom as nom_joueur,emj.id_equipe,e.nom as nom_equipe,emj.match_count as nombre_match_equipe,jmj.match_count as nombre_match_joueur from joueur_mj jmj join joueur j on j.id=jmj.id_joueur join equipe e on e.id=j.id_equipe join equipe_mj emj on emj.id_equipe=e.id;
+select jmj.id_joueur,j.nom as nom_joueur,j.image as image_joueur,emj.id_equipe,e.nom as nom_equipe,emj.match_count as nombre_match_equipe,jmj.match_count as nombre_match_joueur from joueur_mj jmj join joueur j on j.id=jmj.id_joueur join equipe e on e.id=j.id_equipe join equipe_mj emj on emj.id_equipe=e.id;
 

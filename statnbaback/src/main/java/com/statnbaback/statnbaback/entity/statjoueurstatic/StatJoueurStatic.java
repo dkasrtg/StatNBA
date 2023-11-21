@@ -15,7 +15,8 @@ public class StatJoueurStatic {
     private String nomEquipe;
     private Integer nombreMatchEquipe;
     private Integer nombreMatchJoueur;
-    
+    private String imageJoueur;
+
     public Integer getIdJoueur() {
         return idJoueur;
     }
@@ -51,6 +52,12 @@ public class StatJoueurStatic {
     }
     public void setNombreMatchJoueur(Integer nombreMatchJoueur) {
         this.nombreMatchJoueur = nombreMatchJoueur;
+    }
+    public String getImageJoueur() {
+        return imageJoueur;
+    }
+    public void setImageJoueur(String imageJoueur) {
+        this.imageJoueur = imageJoueur;
     }
     
 }

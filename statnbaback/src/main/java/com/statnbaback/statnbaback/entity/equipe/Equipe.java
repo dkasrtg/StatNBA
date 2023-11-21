@@ -11,6 +11,7 @@ public class Equipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
+    private String image;
     public Integer getId() {
         return id;
     }
@@ -23,4 +24,11 @@ public class Equipe {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
 }

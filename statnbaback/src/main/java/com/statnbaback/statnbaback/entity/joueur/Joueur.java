@@ -13,6 +13,7 @@ public class Joueur {
     private String nom;
     private Integer numero;
     private Integer idEquipe;
+    private String image;
     public Integer getId() {
         return id;
     }
@@ -36,5 +37,11 @@ public class Joueur {
     }
     public void setIdEquipe(Integer idEquipe) {
         this.idEquipe = idEquipe;
-    }    
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }        
 }
