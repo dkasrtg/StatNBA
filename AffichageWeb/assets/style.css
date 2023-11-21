@@ -32,3 +32,11 @@
     height: 50px;
     margin-left: 20px;
 }
+
+.text-left {
+    text-align: left;
+}
+
+.profile {
+    justify-content: left !important;
+}
