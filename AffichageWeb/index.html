@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Statistique</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-5" href="#">
+                <img src="./assets/images/logo.webp" class="menu-icon" alt="">
+                <span class="menu-text">NBA.com</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Statistique</a>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header d-flex justify-content-center align-items-center">
+        <img src="./assets/images/logo.webp" class="middle-icon" alt="">
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center">
+            <h4 class="my-4 mx-5">Statistiques individuelles <span class="text-primary">NBA</span> </h4>
+            <img src="./assets/images/basket-icon.png" class="icon" alt="">
+        </div>
+        <div class="head-background mb-0">
+            <h5 class="p-3 mb-0 text-white">2023-2024 SAISON STATS</h5>
+        </div>
+        <table class="table table-striped mt-0 stat-table">
+            <thead>
+                <tr class="head-row-background">
+                    <td>CLASSEMENT</td>
+                    <td>JOUEUR</td>
+                    <td>EQUIPE</td>
+                    <td>M</td>
+                    <td>MJ</td>
+                    <td>PPM</td>
+                    <td>RPM</td>
+                    <td>PDPM</td>
+                    <td>MPM</td>
+                    <td>EFF</td>
+                    <td>FG%</td>
+                    <td>3P%</td>
+                    <td>%LF</td>
+                </tr>
+            </thead>
+            <tbody id="joueurStatList">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./assets/js/statistique.js"></script>
+</body>
+
+</html>
