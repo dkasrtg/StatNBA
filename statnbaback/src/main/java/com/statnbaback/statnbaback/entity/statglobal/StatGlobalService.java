@@ -40,6 +40,23 @@ public class StatGlobalService {
             }
         }
         return statGlobals;
+    }
 
+    public List<StatGlobal> findByIdEquipe(Integer idEquipe){
+        List<StatJoueurStatic> statJoueurStatics = statJoueurStaticService.findByIdEquipe(idEquipe);
+        List<TypeAction> typeActions = typeActionService.list();
+        List<StatJoueurDynamic> statJoueurDynamics = statJoueurDynamicService.findByIdEquipe(typeActions,idEquipe);
+        List<StatGlobal> statGlobals = new ArrayList<>();
+        for (StatJoueurDynamic statJoueurDynamic : statJoueurDynamics) {
+            for (StatJoueurStatic statJoueurStatic : statJoueurStatics) {
+                if (statJoueurDynamic.getIdJoueur()==statJoueurStatic.getIdJoueur()) {
+                    StatGlobal statGlobal = new StatGlobal();
+                    statGlobal.setStatJoueurDynamic(statJoueurDynamic);
+                    statGlobal.setStatJoueurStatic(statJoueurStatic);
+                    statGlobals.add(statGlobal);
+                }
+            }
+        }
+        return statGlobals;
     }
 }

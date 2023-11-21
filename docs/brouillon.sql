@@ -244,6 +244,7 @@ INSERT INTO "action" (id_joueur, id_match, id_type_action, valeur) VALUES
   (9, 3, 8, 2);   -- 8th action for player 9 (number of 3-pointers)
 
 create or replace view v_stat 
+
 SELECT
   id_joueur,
   AVG(CASE WHEN ta.reference = 'ppm' THEN a.valeur END) AS "ppm",
@@ -256,6 +257,7 @@ SELECT
   AVG(CASE WHEN ta.reference = '%lf' THEN a.valeur END) AS "%lf"
 FROM "action" a
 JOIN type_action ta ON a.id_type_action = ta.id
+where id_joueur in (select j.id from joueur j join equipe e on j.id_equipe=e.id where e.id=2)
 GROUP BY id_joueur
 ORDER BY "ppm" desc;
 

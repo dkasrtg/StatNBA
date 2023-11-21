@@ -14,7 +14,9 @@ public class StatJoueurStaticService {
         return statJoueurStaticRepository.findAll();
     }
 
-    public StatJoueurStatic findById(Integer id){
-        return statJoueurStaticRepository.findById(id).orElse(null);
+    public List<StatJoueurStatic> findByIdEquipe(Integer idEquipe){
+        return statJoueurStaticRepository.findByIdEquipe(idEquipe);
     }
+
+
 }
