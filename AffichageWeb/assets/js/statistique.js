@@ -7,7 +7,7 @@ function getStatRow(classement, photoJoueur, nomJoueur, equipe, M, MJ, PPM, RPM,
             </td>
             <td>
                 <div class="d-flex profile align-items-center justify-content-left">
-                    <img src="data:image;base64,` + photoJoueur + `" class="profile-img" alt="Image du Joueur">
+                    <img src="./assets/images/joueurs/` + photoJoueur + `.webp  " class="profile-img" alt="Image du Joueur">
                     <span>`+ nomJoueur + `</span>
                 </div>
             </td>
@@ -59,7 +59,7 @@ function getStatistiques() {
     console.log("FETCHING ALL DATA ...");
 
     // URL de l'API source des statistiques et l'entete du requete
-    const url = "http://localhost:8080/nba/statistiques";
+    const url = "http://statnba-production.up.railway.app/api/statglobal";
 
     // Faire l'appel
     fetch(url)
@@ -67,23 +67,33 @@ function getStatistiques() {
             return response.json();     // We should convert the response to json
         })
         .then(data => {
-            const result = getResponseData(data);
-            displayStatistique(result);
+            console.log(data);
+            displayStatistique(data);
         })
         .catch(error => {
             console.log(error.message);
         });
 }
 
+// Arrondir nombre
+function arrondirNombre(nombre) {
+    // Utilisez la méthode toFixed pour arrondir le nombre
+    var nombreArrondi = nombre.toFixed(1);
+    
+    // Convertissez le résultat en nombre pour vous assurer que le type est correct
+    return parseFloat(nombreArrondi);
+}
+
+
 // Fonction pour afficher les données dans l'affichage
 function displayStatistique(data) {
     const joueurStatList = document.getElementById("joueurStatList");
-    
+    var classement = 1;
     data.forEach(stat => {
         var row = document.createElement('tr');
-        row.innerHTML =  getStatRow(stat.classement, stat.joueur.photo, stat.joueur.nom, stat.lf, stat.m, stat.mj, stat.ppm, stat.rpm, stat.pdpm, stat.mpm, stat.eff, stat.fg, stat.threeP, stat.lf);
-        
+        row.innerHTML =  getStatRow(classement, stat.statJoueurStatic.imageJoueur, stat.statJoueurStatic.nomJoueur, stat.statJoueurStatic.nomEquipe, stat.statJoueurStatic.nombreMatchEquipe, stat.statJoueurStatic.nombreMatchJoueur, arrondirNombre(stat.statJoueurDynamic.typeActionValue[0]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[1]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[2]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[3]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[4]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[5]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[6]), arrondirNombre(stat.statJoueurDynamic.typeActionValue[7]));
         joueurStatList.appendChild(row);
+        classement++;
     });
 
 }
