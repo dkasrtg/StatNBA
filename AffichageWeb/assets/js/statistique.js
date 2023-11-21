@@ -7,7 +7,7 @@ function getStatRow(classement, photoJoueur, nomJoueur, equipe, M, MJ, PPM, RPM,
             </td>
             <td>
                 <div class="d-flex profile align-items-center justify-content-left">
-                    <img src="assets/images/image.avif" class="profile-img" alt="">
+                    <img src="data:image;base64,` + photoJoueur + `" class="profile-img" alt="Image du Joueur">
                     <span>`+ nomJoueur + `</span>
                 </div>
             </td>
@@ -83,11 +83,11 @@ function displayStatistique(data) {
         var row = document.createElement('tr');
         row.innerHTML =  getStatRow(stat.classement, stat.joueur.photo, stat.joueur.nom, stat.lf, stat.m, stat.mj, stat.ppm, stat.rpm, stat.pdpm, stat.mpm, stat.eff, stat.fg, stat.threeP, stat.lf);
         
-        console.log(row);
-
         joueurStatList.appendChild(row);
     });
 
 }
 
-getStatistiques();
+window.onload = function() {
+    getStatistiques(); // Remplacez maFonction par le nom de votre fonction
+};
