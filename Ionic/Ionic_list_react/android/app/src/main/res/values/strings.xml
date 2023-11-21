@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">listreact</string>
+    <string name="title_activity_main">listreact</string>
+    <string name="package_name">ionic.listreact</string>
+    <string name="custom_url_scheme">ionic.listreact</string>
+</resources>
