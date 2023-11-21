@@ -36,7 +36,7 @@ INSERT INTO joueur (id_equipe, nom, numero,"image") VALUES
   (3, 'Kevin Durant', 7,'joueur7'),
   (3, 'Kyrie Irving', 11,'joueur8'),
   (3, 'James Harden', 13,'joueur9');
-  
+
 
 INSERT INTO saison (annee_debut, annee_fin) VALUES (2022, 2023);
 
@@ -280,6 +280,6 @@ LEFT JOIN action a ON j.id = a.id_joueur
 GROUP BY j.id;
 
 
-create view stat_joueur_static as 
+create or replace view stat_joueur_static as 
 select jmj.id_joueur,j.nom as nom_joueur,j.image as image_joueur,emj.id_equipe,e.nom as nom_equipe,emj.match_count as nombre_match_equipe,jmj.match_count as nombre_match_joueur from joueur_mj jmj join joueur j on j.id=jmj.id_joueur join equipe e on e.id=j.id_equipe join equipe_mj emj on emj.id_equipe=e.id;
 

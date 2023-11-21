@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "1f2f8058-5b8f-4439-8903-cf441ffe984c",
+		"name": "statnba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26429806"
+	},
+	"item": [
+		{
+			"name": "https://statnba-production.up.railway.app/api/statglobal/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://statnba-production.up.railway.app/api/statglobal/1",
+					"protocol": "https",
+					"host": [
+						"statnba-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"statglobal",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://statnba-production.up.railway.app/api/statglobal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://statnba-production.up.railway.app/api/statglobal",
+					"protocol": "https",
+					"host": [
+						"statnba-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"statglobal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://statnba-production.up.railway.app/api/equipe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://statnba-production.up.railway.app/api/equipe",
+					"protocol": "https",
+					"host": [
+						"statnba-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"equipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://statnba-production.up.railway.app/api/action",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idTypeAction\" : 1,\r\n    \"idMatch\": 1,\r\n    \"idJoueur\": 1,\r\n    \"valeur\":10\r\n}"
+				},
+				"url": {
+					"raw": "https://statnba-production.up.railway.app/api/action",
+					"protocol": "https",
+					"host": [
+						"statnba-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"action"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
