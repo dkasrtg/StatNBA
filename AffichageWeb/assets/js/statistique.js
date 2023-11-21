@@ -59,7 +59,7 @@ function getStatistiques() {
     console.log("FETCHING ALL DATA ...");
 
     // URL de l'API source des statistiques et l'entete du requete
-    const url = "http://statnba-production.up.railway.app/api/statglobal";
+    const url = "https://statnba-production.up.railway.app/api/statglobal";
 
     // Faire l'appel
     fetch(url)
