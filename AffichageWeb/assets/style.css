@@ -1,3 +1,11 @@
+.header {
+    height: 250px;
+    background-color: #032f4f;
+    background-image: url("./images/header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .head-background {
     background-color: #0f6db4;
 }
@@ -33,10 +41,24 @@
     margin-left: 20px;
 }
 
+.menu-icon {
+    width: 25px;
+    margin-right: 20px;
+    height: 40px;
+}
+
+.middle-icon {
+    width: 80px;
+}
+
+.menu-text {
+    font-weight: 600;
+}
+
 .text-left {
     text-align: left;
 }
 
-.profile {
+.profile {  
     justify-content: left !important;
 }
